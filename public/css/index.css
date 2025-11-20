@@ -1,0 +1,13 @@
+td.green {
+    background-color: lawngreen;
+}
+
+td.red {
+    background-color: red;
+}
+
+div.piechart {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 200px;
+}

@@ -7,10 +7,12 @@ use App\Services\Parsers\RusprofileParser;
 
 class CompaniesUpdateSerivce
 {
-    public function updateAll(): void
+    public function updateAll(): array
     {
         $parser = new RusprofileParser();
         $companies = $parser->parseCompanies();
+
+        $oldRegistry = Company::where('approved', true)->pluck('inn')->toArray();
 
         Company::query()->delete();
 
@@ -29,6 +31,25 @@ class CompaniesUpdateSerivce
         foreach($companyChunks as $chunk)
         {
             Company::insert($chunk);
+        }
+
+        $newRegistry = Company::where('approved', true)->pluck('inn')->toArray();
+        $this->compareRegistries($oldRegistry, $newRegistry, $addedArray, $removedArray);
+        return [$addedArray, $removedArray];
+    }
+
+    private function compareRegistries($oldRegistry, $newRegistry, &$addedArray, &$removedArray): void
+    {
+        $addedArray = [];
+        $removedArray = [];
+        foreach($oldRegistry as $entry)
+        {
+            if(!in_array($entry, $newRegistry)) $removedArray[] = $entry;
+        }
+
+        foreach($newRegistry as $entry)
+        {
+            if(!in_array($entry, $oldRegistry)) $addedArray[] = $entry;
         }
     }
 }

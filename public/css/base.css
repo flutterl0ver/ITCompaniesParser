@@ -1,6 +1,7 @@
 html {
     background-color: #1F1A26;
     min-height: 100%;
+    font-family: Arial;
 }
 
 body {
@@ -20,4 +21,23 @@ div.menu {
     width: 218px;
     background-color: #30273A;
     border-radius: 25px 0 0 25px;
+}
+
+div.menuItem {
+    color: white;
+    font-size: 20px;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 20px;
+}
+div.menuItem:hover {
+    background-color: #3B3146;
+}
+
+div.logo {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 32px;
+    background-image: url('/img/logo.svg');
+    background-size: cover;
 }
