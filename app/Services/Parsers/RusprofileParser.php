@@ -15,13 +15,13 @@ class RusprofileParser
     {
         libxml_use_internal_errors(true);
 
-        $codes = [
-            620000, 630000
+        $urlCodes = [
+            620000
         ];
         $result = [];
-        foreach($codes as $code)
+        foreach($urlCodes as $code)
         {
-            $i = 9;
+            $i = 0;
             $isEnd = true;
             do {
                 $i++;
@@ -51,24 +51,39 @@ class RusprofileParser
         $titles = $xpath->query("//div[@class='tile-item__title']");
         if($titles->length >= 2)
         {
-            $title = $titles->item(1);
-            echo $title->getNodePath();
-            return [];
+            $titlePath = $titles->item(1)->getNodePath();
+            $divName = basename(dirname($titlePath));
+            $totalRecords = intval(substr($divName, 4, strlen($divName) - 5)) - 1;
         }
 
         $result = [];
-        for($i = 0; $i < $names->length; $i++)
+        for($i = 0; $i < $totalRecords; $i++)
         {
             $name = $names->item($i)->textContent;
             $address = $addresses->item($i)->textContent;
             $info = $infoNodes->item($i)->childNodes;
-//            $inn = $this->formatInfo($info->item(1)->textContent);
-//            $ogrn = $this->formatInfo($info->item(3)->textContent);
-//            $regDate = $this->formatInfo($info->item(5)->textContent);
-            $result[] = new Company($name, $address, "a", "a", new \DateTime("now"));
+            $this->getInfo($info, $inn, $ogrn, $regDate);
+            $result[] = new Company($name, $address, $inn, $ogrn, new \DateTime($regDate));
         }
         $isEnd = $xpath->query("//a[@class='nav-arrow nav-next']")->length == 0;
         return $result;
+    }
+
+    private function getInfo(\DOMNodeList $info, &$inn, &$ogrn, &$regDate)
+    {
+        $inn = $ogrn = $regDate = null;
+
+        $infos = [];
+        for($i = 1; $i < $info->length; $i += 2)
+        {
+            $infos[] = $info->item($i)->textContent;
+        }
+        foreach($infos as $infoText)
+        {
+            if(str_starts_with($infoText, 'ИНН')) $inn = $this->formatInfo($infoText);
+            if(str_starts_with($infoText, 'ОГРН')) $ogrn = $this->formatInfo($infoText);
+            if(str_starts_with($infoText, 'Дата регистрации')) $regDate = $this->formatInfo($infoText);
+        }
     }
 
     private function formatInfo(string $info) : string

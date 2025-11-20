@@ -6,6 +6,11 @@
 </head>
 <body>
 <?php
+
+    use Illuminate\Support\Facades\Http;
+
+    $service = new \App\Services\CompaniesUpdateSerivce();
+    $service->updateAll();
     $parser = new \App\Services\Parsers\RusprofileParser();
     $companies = $parser->parseCompanies();
     echo count($companies);
