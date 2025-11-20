@@ -5,15 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-<?php
+@include('components/base')
 
-    use Illuminate\Support\Facades\Http;
-
-    $service = new \App\Services\CompaniesUpdateSerivce();
-    $service->updateAll();
-    $parser = new \App\Services\Parsers\RusprofileParser();
-    $companies = $parser->parseCompanies();
-    echo count($companies);
-?>
+<div style="margin-left: 250px">
+    <table style="background-color: white; margin: 100px 20px">
+        <tr>
+            <th>ИНН</th>
+            <th>Название</th>
+            <th>Регистрационный адрес</th>
+            <th>ОГРН</th>
+            <th>Нахождение в реестре</th>
+        </tr>
+        <?php
+            $updateService = new \App\Services\CompaniesUpdateSerivce();
+            $updateService->updateAll();
+            $companies = \App\Models\Company::all();
+        ?>
+        @foreach($companies as $company)
+            <tr>
+                <td>{{ $company->inn }}</td>
+                <td>{{ $company->name }}</td>
+                <td>{{ $company->address }}</td>
+                <td>{{ $company->ogrn }}</td>
+                <td>{{ $company->approved ? 'Да' : 'Нет' }}</td>
+            </tr>
+        @endforeach
+    </table>
+</div>
 </body>
 </html>

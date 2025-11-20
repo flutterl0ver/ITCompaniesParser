@@ -6,6 +6,7 @@ use App\Services\DTO\Company;
 use DOMDocument;
 use DOMXPath;
 use Illuminate\Support\Facades\Http;
+use function PHPUnit\Framework\stringContains;
 
 const BASE_URL = 'https://www.rusprofile.ru/codes/';
 
@@ -16,7 +17,10 @@ class RusprofileParser
         libxml_use_internal_errors(true);
 
         $urlCodes = [
-            620000
+            631210
+//            620100, 620200, 620210, 620220, 620230, 620240, 620290, 620300, 620310, 620311, 610312,
+//            620313, 620319, 620900, 630000, 631000, 631100, 631110, 631190, 631200, 631210, 639000, 639100,
+//            639900, 639910, 639920
         ];
         $result = [];
         foreach($urlCodes as $code)
@@ -61,6 +65,7 @@ class RusprofileParser
         {
             $name = $names->item($i)->textContent;
             $address = $addresses->item($i)->textContent;
+            if(!str_contains($address, 'Калининград')) continue;
             $info = $infoNodes->item($i)->childNodes;
             $this->getInfo($info, $inn, $ogrn, $regDate);
             $result[] = new Company($name, $address, $inn, $ogrn, new \DateTime($regDate));

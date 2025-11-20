@@ -1,0 +1,23 @@
+html {
+    background-color: #1F1A26;
+    min-height: 100%;
+}
+
+body {
+    padding: 10px;
+    min-height: 90vh;
+    margin: 34px 40px;
+    background-color: #383040;
+    border-radius: 25px;
+    position: relative;
+}
+
+div.menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 218px;
+    background-color: #30273A;
+    border-radius: 25px 0 0 25px;
+}
