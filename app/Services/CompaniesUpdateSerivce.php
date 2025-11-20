@@ -17,6 +17,8 @@ class CompaniesUpdateSerivce
         Company::query()->delete();
 
         $companiesData = [];
+        $approvedService = new CompanyApprovedService();
+        $approvedService->startBrowser();
         foreach($companies as $company)
         {
             $companiesData[] = [
@@ -24,9 +26,10 @@ class CompaniesUpdateSerivce
                 'name' => $company->name,
                 'address' => $company->address,
                 'ogrn' => $company->ogrn,
-                'approved' => random_int(0, 2) == 0
+                'approved' => $approvedService->isApproved($company->inn)
             ];
         }
+        $approvedService->closeBrowser();
         $companyChunks = array_chunk($companiesData, 1000);
         foreach($companyChunks as $chunk)
         {

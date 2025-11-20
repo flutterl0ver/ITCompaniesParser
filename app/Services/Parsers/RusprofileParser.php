@@ -17,7 +17,7 @@ class RusprofileParser
         libxml_use_internal_errors(true);
 
         $urlCodes = [
-            620000
+            631210
 //            620100, 620200, 620210, 620220, 620230, 620240, 620290, 620300, 620310, 620311, 610312,
 //            620313, 620319, 620900, 630000, 631000, 631100, 631110, 631190, 631200, 631210, 639000, 639100,
 //            639900, 639910, 639920
@@ -41,7 +41,7 @@ class RusprofileParser
 
     private function parsePage(string $url, bool& $isEnd) : array
     {
-        $html = Http::get($url)->body();
+        $html = Http::withoutVerifying()->get($url)->body();
         $dom = new DOMDocument();
         $dom->loadHTML($html);
 
