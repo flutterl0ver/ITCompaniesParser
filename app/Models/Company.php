@@ -12,7 +12,9 @@ class Company extends Model
         'name',
         'address',
         'ogrn',
-        'approved'
+        'approved',
+        'updated_at',
+        'update_status'
     ];
     public $timestamps = false;
 }

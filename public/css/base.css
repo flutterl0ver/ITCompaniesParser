@@ -24,7 +24,6 @@ div.menu {
 }
 
 div.menuItem {
-    color: white;
     font-size: 20px;
     height: 2em;
     line-height: 2em;
@@ -32,6 +31,11 @@ div.menuItem {
 }
 div.menuItem:hover {
     background-color: #3B3146;
+}
+
+div.menuItem a {
+    color: white;
+    text-decoration: none;
 }
 
 div.logo {

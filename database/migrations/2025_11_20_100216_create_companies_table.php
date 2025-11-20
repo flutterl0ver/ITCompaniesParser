@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('address');
             $table->string('ogrn')->nullable();
             $table->boolean('approved');
+            $table->dateTime('updated_at');
+            $table->integer('update_status');
         });
     }
 

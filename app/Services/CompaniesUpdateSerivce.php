@@ -7,7 +7,7 @@ use App\Services\Parsers\RusprofileParser;
 
 class CompaniesUpdateSerivce
 {
-    public function updateAll(): array
+    public function updateAll(): void
     {
         $parser = new RusprofileParser();
         $companies = $parser->parseCompanies();
@@ -21,12 +21,20 @@ class CompaniesUpdateSerivce
         $approvedService->startBrowser();
         foreach($companies as $company)
         {
+            $isApproved = $approvedService->isApproved($company->inn);
+
+            $updateStatus = 0;
+            if($isApproved && !in_array($company->inn, $oldRegistry)) $updateStatus = 1;
+            else if(!$isApproved && in_array($company->inn, $oldRegistry)) $updateStatus = -1;
+
             $companiesData[] = [
                 'inn' => $company->inn,
                 'name' => $company->name,
                 'address' => $company->address,
                 'ogrn' => $company->ogrn,
-                'approved' => $approvedService->isApproved($company->inn)
+                'approved' => $isApproved,
+                'updated_at' => new \DateTime(),
+                'update_status' => $updateStatus
             ];
         }
         $approvedService->closeBrowser();
@@ -34,25 +42,6 @@ class CompaniesUpdateSerivce
         foreach($companyChunks as $chunk)
         {
             Company::insert($chunk);
-        }
-
-        $newRegistry = Company::where('approved', true)->pluck('inn')->toArray();
-        $this->compareRegistries($oldRegistry, $newRegistry, $addedArray, $removedArray);
-        return [$addedArray, $removedArray];
-    }
-
-    private function compareRegistries($oldRegistry, $newRegistry, &$addedArray, &$removedArray): void
-    {
-        $addedArray = [];
-        $removedArray = [];
-        foreach($oldRegistry as $entry)
-        {
-            if(!in_array($entry, $newRegistry)) $removedArray[] = $entry;
-        }
-
-        foreach($newRegistry as $entry)
-        {
-            if(!in_array($entry, $oldRegistry)) $addedArray[] = $entry;
         }
     }
 }
