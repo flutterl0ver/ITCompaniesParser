@@ -18,9 +18,10 @@
 
         <div class="userInfo">
             @if($user)
-                Пользователь: {{ $user->login }} @if($user->is_admin) (админ) @endif
+                Пользователь: {{ $user->login }} @if($user->is_admin) (админ) @endif<br>
+                <a href="/leaveAccount">Выйти</a>
             @else
-                <a href="/register">Войти в систему</a>
+                <a href="/login">Войти в систему</a>
             @endif
         </div>
 

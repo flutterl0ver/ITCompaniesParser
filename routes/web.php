@@ -10,6 +10,7 @@ Route::view('/register', 'register');
 Route::view('/login', 'login');
 
 Route::get('/update', UpdateController::class);
+Route::get('/leaveAccount', [RegisterController::class, 'leave']);
 
 Route::post('/register', RegisterController::class);
 Route::post('/login', [RegisterController::class, 'login']);

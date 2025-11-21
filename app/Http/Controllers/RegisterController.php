@@ -47,4 +47,10 @@ class RegisterController extends Controller
         }
         else return redirect()->back();
     }
+
+    public function leave(Request $request)
+    {
+        $cookie = cookie('login', '', -1);
+        return redirect()->back()->withCookie($cookie);
+    }
 }
