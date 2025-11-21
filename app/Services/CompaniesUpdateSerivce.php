@@ -49,5 +49,8 @@ class CompaniesUpdateSerivce
         $json = json_decode(file_get_contents(public_path('globalInfo.json')), true);
         $json['last_update'] = $now;
         file_put_contents(public_path('globalInfo.json'), json_encode($json, JSON_PRETTY_PRINT));
+
+        $service = new \App\Services\MailService();
+        $service->reportAllChanges();
     }
 }

@@ -16,7 +16,8 @@
         "curl/curl": "^2.5",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "php-webdriver/webdriver": "^1.15"
+        "php-webdriver/webdriver": "^1.15",
+        "resend/resend-php": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
