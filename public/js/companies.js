@@ -36,3 +36,9 @@ function exportToCsv()
     link.click();
     document.body.removeChild(link);
 }
+
+function startLoading()
+{
+    document.getElementById('mainBody').hidden = true;
+    document.getElementById('loading').hidden = false;
+}

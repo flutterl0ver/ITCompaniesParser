@@ -20,13 +20,15 @@
     $globalInfo = json_decode(file_get_contents('globalInfo.json'), true);
 ?>
 
-<div class="tableContainer">
+<div style="text-align: center; width: 100%; font-size: 20px" id="loading" hidden>Загрузка...</div>
+
+<div class="tableContainer" id="mainBody">
     <div style="display: flex; flex-direction: row-reverse">
         <button style="margin-left: 20px" onclick="exportToXlsx()">экспорт в .xlsx</button>
         <button style="margin-left: 20px" onclick="exportToCsv()">экспорт в .csv</button>
         @if($user != null && $user->is_admin)
             <a href="/update">
-                <button>обновить</button>
+                <button onclick="startLoading()">обновить</button>
             </a>
         @endif
     </div>
@@ -77,9 +79,7 @@
             </tr>
         @endforeach
     </table>
-    <span style="float: right; margin-top: 10px">последнее обновление: {{ $globalInfo['last_update'] }}</span><br>
-    <span style="color: red">*удалена из реестра</span><br>
-    <span style="color: lawngreen">*добавлена в реестр</span><br><br>
+    <span style="float: right; margin-top: 10px">последнее обновление: {{ $globalInfo['last_update'] }}</span>
 </div>
 </body>
 </html>

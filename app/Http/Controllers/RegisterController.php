@@ -14,10 +14,9 @@ class RegisterController extends Controller
         $password = $request->input('password');
         $confirmPassword = $request->input('confirmPassword');
 
-        $emailExists = User::where('email', $email)->exists();
         $loginExists = User::where('login', $login)->exists();
 
-        if($password != $confirmPassword || $emailExists || $loginExists) {
+        if($password != $confirmPassword || $loginExists) {
             return redirect()->back()->withInput(['login' => $login, 'email' => $email]);
         }
 
