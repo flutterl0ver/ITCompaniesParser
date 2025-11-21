@@ -19,6 +19,12 @@ return new class extends Migration
             $table->boolean('approved');
             $table->dateTime('updated_at');
             $table->integer('update_status');
+            $table->integer('workers_count');
+            $table->integer('tax');
+            $table->integer('income');
+            $table->integer('expense');
+            $table->boolean('simple_tax');
+            $table->boolean('tax_issues');
         });
     }
 

@@ -14,7 +14,13 @@ class Company extends Model
         'ogrn',
         'approved',
         'updated_at',
-        'update_status'
+        'update_status',
+        'workers_count',
+        'tax',
+        'income',
+        'expense',
+        'simple_tax',
+        'tax_issues'
     ];
     public $timestamps = false;
 }

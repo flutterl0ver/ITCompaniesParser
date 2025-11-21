@@ -20,9 +20,9 @@
     $globalInfo = json_decode(file_get_contents('globalInfo.json'), true);
 ?>
 
-<div style="text-align: center; width: 100%; font-size: 20px" id="loading" hidden>Загрузка...</div>
+<div style="text-align: center; width: 100%; font-size: 20px" id="loading" @if(!$globalInfo['update_in_progress']) hidden @endif>Загрузка...</div>
 
-<div class="tableContainer" id="mainBody">
+<div class="tableContainer" id="mainBody" @if($globalInfo['update_in_progress']) hidden @endif>
     <div style="display: flex; flex-direction: row-reverse">
         <button style="margin-left: 20px" onclick="exportToXlsx()">экспорт в .xlsx</button>
         <button style="margin-left: 20px" onclick="exportToCsv()">экспорт в .csv</button>
