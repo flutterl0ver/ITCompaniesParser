@@ -7,7 +7,37 @@ td.red {
 }
 
 table {
+    width: 100%;
+    border-spacing: 3px;
+}
+
+div.tableContainer {
+    margin-left: 227px;
+    margin-right: 10px;
+}
+
+th {
+    background-color: #D4CBDF;
+    padding: 10px 20px;
     color: black;
+}
+
+td {
+    background-color: #392E44;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+th.left {
+    border-radius: 10px 0 0 0;
+}
+
+th.right {
+    border-radius: 0 10px 0 0;
+}
+
+tr:nth-child(even) td {
+    background-color: #51435E;
 }
 
 div.piechart {

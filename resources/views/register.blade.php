@@ -13,20 +13,29 @@
         <form method="POST" action="/register">
             @csrf
 
-            <input type="text" name="login" value="{{ request()->input('login') }}">
-            <label for="login">Логин</label><br>
+            <div class="input">
+                <input placeholder="..." type="text" name="login" value="{{ request()->input('login') }}">
+                <div class="inputLabel">логин</div>
+            </div>
 
-            <input type="text" name="email" value="{{ request()->input('email') }}">
-            <label for="email">E-mail</label><br>
+            <div class="input">
+                <input placeholder="..." type="text" name="email" value="{{ request()->input('email') }}">
+                <div class="inputLabel">почта</div>
+            </div>
 
-            <input type="password" name="password">
-            <label for="password">Пароль</label><br>
+            <div class="input">
+                <input placeholder="..." type="password" name="password">
+                <div class="inputLabel">пароль</div>
+            </div>
 
-            <input type="password" name="confirmPassword">
-            <label for="confirmPassword">Подтвердите пароль</label><br>
+            <div class="input">
+                <input placeholder="..." type="password" name="confirmPassword">
+                <div class="inputLabel">подтвердите пароль</div>
+            </div>
 
-            <input type="submit" value="Зарегистрироваться"><br>
-            Есть аккаунт? <a href="/login">Войдите!</a>
+            <input type="submit" value="создать аккаунт">
+
+            <span style="font-size: 15px; text-align: center">уже зарегистрированы?<br><a href="/login">войти</a></span>
         </form>
     </div>
 </body>

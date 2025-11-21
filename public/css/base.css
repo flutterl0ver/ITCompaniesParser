@@ -1,13 +1,22 @@
+@font-face {
+    font-family: Geologica;
+    src: url('/fonts/Geologica.ttf');
+}
+
 html {
     background-color: #1F1A26;
     min-height: 100%;
-    font-family: Arial;
+    font-family: Geologica;
     color: white;
+}
+
+a {
+    color: #AB4EFF;
 }
 
 body {
     padding: 10px;
-    min-height: 90vh;
+    min-height: 84vh;
     margin: 34px 40px;
     background-color: #383040;
     border-radius: 25px;
@@ -42,10 +51,30 @@ div.userInfo {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    right: 20px;
 }
 
 div.menuItem a {
     text-decoration: none;
+}
+
+input[type='submit'],
+button {
+    background-color: #8500EB;
+    border: none;
+    border-radius: 18px;
+    color: white;
+    font-size: 20px;
+    transition-duration: 0.2s;
+    margin: 15px 0;
+    padding: 10px 20px;
+    box-shadow: 0 4px 4px #201A2622;
+}
+input[type='submit']:hover,
+button:hover {
+    background-color: #00E6E6;
+    cursor: pointer;
+    color: #8500EB;
 }
 
 div.logo {

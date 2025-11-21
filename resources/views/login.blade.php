@@ -1,4 +1,3 @@
-@php use App\Models\Company; @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +12,19 @@
         <form method="POST" action="/login">
             @csrf
 
-            <input type="text" name="login" value="{{ request()->input('login') }}">
-            <label for="login">Логин/E-mail</label><br>
+            <div class="input">
+                <input placeholder="..." type="text" name="login" value="{{ request()->input('login') }}">
+                <div class="inputLabel">логин/почта</div>
+            </div>
 
-            <input type="password" name="password">
-            <label for="password">Пароль</label><br>
+            <div class="input">
+                <input placeholder="..." type="password" name="password">
+                <div class="inputLabel">пароль</div>
+            </div>
 
-            <input type="submit" value="Войти"><br>
-            Нет аккаунта? <a href="/register">Зарегистрируйтесь!</a>
+            <input type="submit" value="войти">
+
+            <span style="font-size: 15px; text-align: center">нет аккаунта?<br><a href="/register">зарегистрироваться</a></span>
         </form>
     </div>
 </body>
