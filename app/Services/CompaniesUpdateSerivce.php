@@ -43,5 +43,11 @@ class CompaniesUpdateSerivce
         {
             Company::insert($chunk);
         }
+
+        $now = new \DateTime();
+        $now = $now->format('j.m.Y H:i');
+        $json = json_decode(file_get_contents(public_path('globalInfo.json')), true);
+        $json['last_update'] = $now;
+        file_put_contents(public_path('globalInfo.json'), json_encode($json, JSON_PRETTY_PRINT));
     }
 }

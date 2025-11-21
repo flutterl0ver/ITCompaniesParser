@@ -23,6 +23,7 @@
             if (request()->cookie('login')) {
                 $user = User::where('login', request()->cookie('login'))->first();
             }
+            $globalInfo = json_decode(file_get_contents('globalInfo.json'), true);
         ?>
 
         @foreach($companies as $company)
@@ -38,6 +39,7 @@
             </tr>
         @endforeach
     </table>
+    <span style="margin-left: 330px">Последнее обновление: {{ $globalInfo['last_update'] }}</span><br>
     <span style="color: red">*удалена из реестра</span><br>
     <span style="color: lawngreen">*добавлена в реестр</span><br><br>
 
