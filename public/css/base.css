@@ -2,6 +2,7 @@ html {
     background-color: #1F1A26;
     min-height: 100%;
     font-family: Arial;
+    color: white;
 }
 
 body {
@@ -33,15 +34,23 @@ div.menuItem:hover {
     background-color: #3B3146;
 }
 
+div.userInfo {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    height: 2em;
+    line-height: 2em;
+}
+
 div.menuItem a {
-    color: white;
     text-decoration: none;
 }
 
 div.logo {
-    border-radius: 50%;
-    aspect-ratio: 1;
-    width: 32px;
+    height: 32px;
     background-image: url('/img/logo.svg');
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    margin: 20px 0;
 }

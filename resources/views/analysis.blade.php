@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <title>Аналитика</title>
+    <link rel="stylesheet" href="{{ asset('css/companies.css') }}">
 </head>
 <body>
 @include('components/base')

@@ -1,10 +1,10 @@
-@php use App\Models\Company; @endphp
-<!DOCTYPE html>
+@php use App\Models\Company;use App\Models\User; @endphp
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <title>Компании</title>
+    <link rel="stylesheet" href="{{ asset('css/companies.css') }}">
 </head>
 <body>
 @include('components/base')
@@ -19,6 +19,10 @@
         </tr>
         <?php
             $companies = Company::all();
+            $user = null;
+            if (request()->cookie('login')) {
+                $user = User::where('login', request()->cookie('login'))->first();
+            }
         ?>
 
         @foreach($companies as $company)
@@ -37,9 +41,11 @@
     <span style="color: red">*удалена из реестра</span><br>
     <span style="color: lawngreen">*добавлена в реестр</span><br><br>
 
-    <a href="/update">
-        <button>Обновить данные</button>
-    </a>
+    @if($user != null && $user->is_admin)
+        <a href="/update">
+            <button>Обновить данные</button>
+        </a>
+    @endif
 </div>
 </body>
 </html>

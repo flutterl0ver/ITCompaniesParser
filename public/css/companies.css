@@ -6,6 +6,10 @@ td.red {
     background-color: red;
 }
 
+table {
+    color: black;
+}
+
 div.piechart {
     border-radius: 50%;
     aspect-ratio: 1;
