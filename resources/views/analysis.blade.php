@@ -124,6 +124,25 @@
             <div>Усредненное значение численности сотрудников по всем компаниям</div>
         </div>
     </div>
+    <br>Компании, подходящие для включения в Реестр:
+    <table>
+        <tr>
+            <th class="left">ИНН</th>
+            <th>Название</th>
+            <th>Налоги за год</th>
+            <th class="right">Кол-во работников</th>
+        </tr>
+        <?php $companies = Company::where('tax', '>=', 500000)->where('approved', false)->get(); ?>
+
+        @foreach($companies as $company)
+            <tr>
+                <td>{{ $company->inn }}</td>
+                <td>{{ $company->name }}</td>
+                <td>{{ $company->tax }} ₽</td>
+                <td>{{ $company->workers_count }}</td>
+            </tr>
+        @endforeach
+    </table>
 </div>
 </body>
 </html>

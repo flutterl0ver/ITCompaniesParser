@@ -39,6 +39,35 @@ div.chart {
     margin-right: 40px;
 }
 
+tr:nth-child(even) td {
+    background-color: #51435E;
+}
+
+th {
+    background-color: #D4CBDF;
+    padding: 10px 20px;
+    color: black;
+}
+
+td {
+    background-color: #392E44;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+th.left {
+    border-radius: 10px 0 0 0;
+}
+
+th.right {
+    border-radius: 0 10px 0 0;
+}
+
+table {
+    width: 100%;
+    border-spacing: 3px;
+}
+
 div.graphic {
     position: relative;
     padding: 10px 0;
