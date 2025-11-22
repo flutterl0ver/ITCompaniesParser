@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Company;
+use App\Models\TimeState;
 use App\Services\Parsers\NalogParser;
 use App\Services\Parsers\RusprofileParser;
 
@@ -76,6 +77,8 @@ class CompaniesUpdateSerivce
 
         $service = new \App\Services\MailService();
         $service->reportAllChanges();
+
+        TimeState::create(['date' => new \DateTime(), 'avg_workers_count' => Company::avg('workers_count')]);
 
         $globalInfo = json_decode(file_get_contents('globalInfo.json'), true);
         $globalInfo['update_in_progress'] = false;

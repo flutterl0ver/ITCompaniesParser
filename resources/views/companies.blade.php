@@ -72,11 +72,7 @@
                 <td>{{ $company->inn }}</td>
                 <td>{{ $company->name }}</td>
                 <td>{{ $company->ogrn }}</td>
-                <td
-                    @if($company->update_status == 1) class="green"
-                    @elseif($company->update_status == -1) class="red"
-                    @endif
-                >{{ $company->approved ? 'да' : 'нет' }}</td>
+                <td>{{ $company->approved ? 'Да' : 'Нет' }}</td>
                 <td>{{ $company->workers_count }}</td>
             </tr>
         @endforeach

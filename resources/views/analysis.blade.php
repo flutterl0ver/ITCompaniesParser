@@ -68,6 +68,62 @@
             </div>
         </div>
    </div>
+
+    <div style="margin-top: 15px">
+        Динамика изменения численности сотрудников
+        <?php
+            $max = max(Company::max('workers_count'), 5);
+            $d = intdiv($max + 4, 5);
+            $max = $d * 5;
+            $workerCounts = \App\Models\TimeState::latest('date')->limit(4)->get()->reverse();
+        ?>
+        <div class="graphic">
+            <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%">
+                @for($i = $max; $i >= 0; $i -= $d)
+                    <div class="graphicLine"><div>{{ $i }}</div></div>
+                @endfor
+            </div>
+
+            @if(count($workerCounts) >= 2)
+                <?php $i = 0; ?>
+                @foreach($workerCounts as $workerCount)
+                    <?php $date = new DateTime($workerCount->date) ?>
+                    <div class="graphicDate" style="
+                        left: {{ $i * 100 / (count($workerCounts) - 1) }}%;
+                        @if($i == 0) transform: none
+                        @elseif($i == count($workerCounts) - 1) transform: translateX(-100%) @endif">
+                            {{ $date->format('d.m.Y') }}</div>
+                    <?php $i++; ?>
+                @endforeach
+
+                <canvas id="workersCanvas">
+                    <script>
+                        const canvas = document.getElementById('workersCanvas');
+                        const ctx = canvas.getContext('2d');
+                        ctx.moveTo(0, {{ $workerCounts[0]->avg_workers_count / $max * 143 }});
+                        ctx.beginPath();
+                        let i = 0;
+                    </script>
+
+                    @foreach($workerCounts as $workerCount)
+                        <script>
+                            ctx.lineTo(300 / ({{ count($workerCounts) - 1 }}) * i, {{ $workerCount->avg_workers_count / $max * 143 }});
+                            i++;
+                        </script>
+                    @endforeach
+
+                    <script>
+                        ctx.strokeStyle = '#DF00A1';
+                        ctx.stroke();
+                    </script>
+                </canvas>
+            @endif
+        </div>
+        <div class="colorContainer">
+            <div style="align-content: center"><div class="color" style="background-color: #DF00A1"></div></div>
+            <div>Усредненное значение численности сотрудников по всем компаниям</div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
