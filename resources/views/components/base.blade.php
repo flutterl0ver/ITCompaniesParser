@@ -12,15 +12,15 @@
 <div class="menu">
     <div style="display: flex; flex-direction: column">
         <div class="logo"></div>
-        <div class="menuItem"><a href="/companies">компании</a></div>
-        <div class="menuItem"><a href="/analysis">аналитика</a></div>
+        <div class="menuItem"><a href="/companies">Компании</a></div>
+        <div class="menuItem"><a href="/analysis">Аналитика</a></div>
 
         <div class="userInfo">
             @if($user)
-                пользователь: {{ $user->login }} @if($user->is_admin) (админ) @endif<br>
-                <a href="/leaveAccount">выйти</a>
+                Пользователь: {{ $user->login }} @if($user->is_admin) (Админ) @endif<br>
+                <a href="/leaveAccount">Выйти</a>
             @else
-                <a href="/login">войти в систему</a>
+                <a href="/login">Войти в систему</a>
             @endif
         </div>
 

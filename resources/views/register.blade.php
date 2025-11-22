@@ -15,27 +15,27 @@
 
             <div class="input">
                 <input placeholder="..." type="text" name="login" value="{{ request()->input('login') }}">
-                <div class="inputLabel">логин</div>
+                <div class="inputLabel">Логин</div>
             </div>
 
             <div class="input">
                 <input placeholder="..." type="text" name="email" value="{{ request()->input('email') }}">
-                <div class="inputLabel">почта</div>
+                <div class="inputLabel">Почта</div>
             </div>
 
             <div class="input">
                 <input placeholder="..." type="password" name="password">
-                <div class="inputLabel">пароль</div>
+                <div class="inputLabel">Пароль</div>
             </div>
 
             <div class="input">
                 <input placeholder="..." type="password" name="confirmPassword">
-                <div class="inputLabel">подтвердите пароль</div>
+                <div class="inputLabel">Подтвердите пароль</div>
             </div>
 
             <input type="submit" value="создать аккаунт">
 
-            <span style="font-size: 15px; text-align: center">уже зарегистрированы?<br><a href="/login">войти</a></span>
+            <span style="font-size: 15px; text-align: center">Уже зарегистрированы?<br><a href="/login">Войти</a></span>
         </form>
     </div>
 </body>

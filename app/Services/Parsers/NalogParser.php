@@ -50,11 +50,14 @@ class NalogParser
         $income = $incomeHeader->findElement(WebDriverBy::xpath("following-sibling::*[1]"))->getDomProperty('innerText');
         $expense = $expenseHeader->findElement(WebDriverBy::xpath("following-sibling::*[1]"))->getDomProperty('innerText');
 
+        $simple_tax = $this->webDriver->findElements(WebDriverBy::xpath("//p[text()='Упрощенная система налогообложения']")) != [];
+
         return [
-            'workers' => $workers,
-            'tax' => $tax,
-            'income' => $income,
-            'expense' => $expense
+            'workers' => $this->formatInt($workers),
+            'tax' => $this->formatInt($tax),
+            'income' => $this->formatInt($income),
+            'expense' => $this->formatInt($expense),
+            'simple_tax' => $simple_tax
         ];
     }
 

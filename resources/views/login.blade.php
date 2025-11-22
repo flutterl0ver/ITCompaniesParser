@@ -14,17 +14,17 @@
 
             <div class="input">
                 <input placeholder="..." type="text" name="login" value="{{ request()->input('login') }}">
-                <div class="inputLabel">логин/почта</div>
+                <div class="inputLabel">Логин/почта</div>
             </div>
 
             <div class="input">
                 <input placeholder="..." type="password" name="password">
-                <div class="inputLabel">пароль</div>
+                <div class="inputLabel">Пароль</div>
             </div>
 
             <input type="submit" value="войти">
 
-            <span style="font-size: 15px; text-align: center">нет аккаунта?<br><a href="/register">зарегистрироваться</a></span>
+            <span style="font-size: 15px; text-align: center">Нет аккаунта?<br><a href="/register">Зарегистрироваться</a></span>
         </form>
     </div>
 </body>

@@ -74,9 +74,3 @@ span.statText {
 tr:nth-child(even) td {
     background-color: #51435E;
 }
-
-div.piechart {
-    border-radius: 50%;
-    aspect-ratio: 1;
-    width: 200px;
-}

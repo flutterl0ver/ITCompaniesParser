@@ -55,7 +55,7 @@ class CompaniesUpdateSerivce
                 'tax' => $nalogData['tax'],
                 'income' => $nalogData['income'],
                 'expense' => $nalogData['expense'],
-                'simple_tax' => false,
+                'simple_tax' => $nalogData['simple_tax'],
                 'tax_issues' => false
             ];
         }
